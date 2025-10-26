@@ -1,24 +1,18 @@
-# Device Tree for POCO X4 Pro 5G/Redmi Note 11E Pro/Redmi Note 11 Pro 5G/Redmi Note 11 Pro+ 5G (peux/veux)
+## Xiaomi SM6375 common tree
 
-## Spec Sheet
+Xiaomi released various devices since 2022 with the sm6375 chip (or derivated like sm4375):
 
-| Feature          | Specification                                                   |
-| :--------------- | :-------------------------------------------------------------- |
-| CPU              | Octa-core (2x2.2 GHz Kryo 660 Gold & 6x1.7 GHz Kryo 660 Silver) |
-| Chipset          | Qualcomm SM6375 Snapdragon 695G (6 nm)                          |
-| GPU              | Adreno 619                                                      |
-| Memory           | 6 GB / 8 GB                                                     |
-| Shipped Software | Android 11, MIUI 13                                             |
-| Storage          | 128 GB / 256 GB                                                 |
-| Battery          | 5000 mAh                                                        |
-| Dimensions       | 165.1 x 76.4 x 9.3 mm (6.5 x 3.01 x 0.37 in)                    |
-| Display          | 6.67 inches, 107.4 cm2 (~86.0% screen-to-body ratio)            |
-| Rear Camera      | 108 MP, f/1.9, 26mm (wide), 1/1.52", 0.7µm, PDAF                |
-|                  | 8 MP, f/2.2, 118˚ (ultrawide)                                   |
-|                  | 2 MP, f/2.4, (macro)                                            |
-| Front Camera     | 16 MP, f/2.5, (wide), 1/3.06" 1.0µm                             |
-| Release Date     | February 2022                                                   |
 
-## Device Picture
+- POCO X4 Pro 5G / Redmi Note 11E Pro / Redmi Note 11 Pro 5G / Redmi Note 11 Pro+ 5G (Veux | Peux)  
+- Poco X5 5G (Moonstone) & Redmi Note 12 5G/ 12R Pro (Sunstone) (Known as Stone)  
+- Redmi 15/15R 5G/POCO M7 Plus 5G (Spring)
 
-![POCO X4 Pro 5G/Redmi Note 11E Pro/Redmi Note 11 Pro 5G/Redmi Note 11 Pro+ 5G](https://i.ibb.co/4syxpfw/330608dc148bfa50f6326d996d6c8e8b.png "POCO X4 Pro 5G/Redmi Note 11E Pro/Redmi Note 11 Pro 5G/Redmi Note 11 Pro+ 5G")
+
+Altho they're not all strictly sm6375, they share the same board.
+Here is the list of the codenames in front of their soc :
+
+| Codename  | Associated SOC          |   Year of release    |
+| :---------------: |:---------------:| :------------------: |
+| Veux / Peux       |    sm6375       |         2022         |
+| Stone (Moon/Sun)  |    sm4375       |         2022         |
+| Spring            |     sm6375      |     2025 (wtf ?)     |

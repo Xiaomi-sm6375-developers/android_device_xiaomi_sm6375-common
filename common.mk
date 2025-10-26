@@ -336,25 +336,6 @@ PRODUCT_PACKAGES += \
     ApertureQRScannerOverlay \
     ApertureIconOverlay
 
-PRODUCT_PACKAGES += \
-    FrameworkOverlayVEUX \
-    LineageSDKOverlayVEUX \
-    SettingsOverlayVEUX \
-    SystemUIOverlayVEUX \
-    WifiOverlayVEUX
-
-PRODUCT_PACKAGES += \
-    SettingsProviderOverlay2201116SG \
-    SettingsProviderOverlay2201116SC \
-    SettingsProviderOverlay2201116SI \
-    SettingsProviderOverlay2201116SR \
-    SettingsProviderOverlay2201116PG \
-    SettingsProviderOverlay2201116PI
-
-PRODUCT_PACKAGES += \
-    EuiccOverlay2201116SR \
-    SettingsOverlay2201116SR
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/overlay/config-odm.xml:$(TARGET_COPY_OUT_ODM)/overlay/config/config.xml \
     $(LOCAL_PATH)/overlay/config-vendor.xml:$(TARGET_COPY_OUT_VENDOR)/overlay/config/config.xml
@@ -487,9 +468,6 @@ PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0 \
     android.frameworks.sensorservice@1.0.vendor
 
-# Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 30
-
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
@@ -571,8 +549,4 @@ PRODUCT_PACKAGES += \
     firmware_WCNSS_qcom_cfg.ini_symlink
 
 # Inherit from proprietary targets
-$(call inherit-product, vendor/xiaomi/veux/veux-vendor.mk)
-
-# Remove unwanted packages
-PRODUCT_PACKAGES += \
-    RemovePackagesVeux
+$(call inherit-product, vendor/xiaomi/sm6375-common/sm6375-common-vendor.mk)

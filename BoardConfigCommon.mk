@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/xiaomi/veux
+COMMON_PATH := device/xiaomi/sm6375-common
 
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
@@ -54,15 +54,8 @@ BOARD_SUPPORTS_SOUND_TRIGGER := true
 BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
 
-# Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := veux
-TARGET_NO_BOOTLOADER := true
-
-# Display
-TARGET_SCREEN_DENSITY := 440
-
 # Filesystem
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
+TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 
 # GNSS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
@@ -71,19 +64,19 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
-    $(DEVICE_PATH)/configs/vintf/device_framework_matrix.xml
+    $(COMMON_PATH)/configs/vintf/device_framework_matrix.xml
 
 DEVICE_MANIFEST_FILE := \
-    $(DEVICE_PATH)/configs/vintf/manifest.xml
+    $(COMMON_PATH)/configs/vintf/manifest.xml
 
 DEVICE_MATRIX_FILE := \
-    $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
+    $(COMMON_PATH)/configs/vintf/compatibility_matrix.xml
 
 ODM_MANIFEST_SKUS += \
     sn100
 
 ODM_MANIFEST_SN100_FILES := \
-    $(DEVICE_PATH)/configs/vintf/manifest_ese.xml
+    $(COMMON_PATH)/configs/vintf/manifest_ese.xml
 
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
@@ -119,55 +112,10 @@ BOARD_KERNEL_CMDLINE := \
     ip6table_raw.raw_before_defrag=1 \
     firmware_class.path=/vendor/firmware
 
-TARGET_KERNEL_CONFIG := veux_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/veux
-TARGET_KERNEL_NO_GCC := true
-
 # Global LTO
 TARGET_GLOBAL_LTO := thin
 TARGET_GLOBAL_OPTIMIZATION := O3
 TARGET_GLOBAL_THINLTO := true
-
-# OTA assert
-TARGET_OTA_ASSERT_DEVICE := peux|veux
-
-# Partitions
-BOARD_BOOTIMAGE_PARTITION_SIZE := 134217728
-BOARD_DTBOIMG_PARTITION_SIZE := 8388608
-BOARD_SUPER_PARTITION_SIZE := 9126805504
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
-BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_USES_METADATA_PARTITION := true
-
-BOARD_VEUX_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_ext vendor
-BOARD_VEUX_DYNAMIC_PARTITIONS_SIZE := 9122611200 # BOARD_SUPER_PARTITION_SIZE - 4MB
-BOARD_SUPER_PARTITION_GROUPS := veux_dynamic_partitions
-
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-
-ifneq ($(WITH_GMS),true)
-BOARD_PRODUCTIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 1073741824
-BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 1073741824
-BOARD_SYSTEM_EXTIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 1073741824
-else
-BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 25165824
-BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 25165824
-BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 25165824
-endif
-BOARD_ODMIMAGE_PARTITION_RESERVED_SIZE := 25165824
-BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 25165824
-
-TARGET_COPY_OUT_ODM := odm
-TARGET_COPY_OUT_PRODUCT := product
-TARGET_COPY_OUT_SYSTEM_EXT := system_ext
-TARGET_COPY_OUT_VENDOR := vendor
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
@@ -175,15 +123,15 @@ BOARD_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := holi
 
 # Properties
-TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/properties/product.prop
-TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/properties/system_ext.prop
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
+TARGET_ODM_PROP += $(COMMON_PATH)/configs/properties/odm.prop
+TARGET_PRODUCT_PROP += $(COMMON_PATH)/configs/properties/product.prop
+TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/configs/properties/system_ext.prop
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/configs/properties/system.prop
+TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/properties/vendor.prop
 
 # Recovery
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.default
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.default
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_F2FS := true
 
@@ -197,9 +145,9 @@ VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 # SELinux
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include device/lineage/sepolicy/libperfmgr/sepolicy.mk
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Verified Boot
 BOARD_AVB_ENABLE := true

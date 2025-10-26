@@ -15,7 +15,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
-    'device/xiaomi/veux',
+    'device/xiaomi/sm6375-common',
     'hardware/qcom-caf/sm8350',
     'hardware/qcom-caf/wlan',
     'hardware/xiaomi',
@@ -76,7 +76,7 @@ blob_fixups: blob_fixups_user_type = {
 
 
 module = ExtractUtilsModule(
-    'veux',
+    'sm6375-common',
     'xiaomi',
     blob_fixups=blob_fixups,
     namespace_imports=namespace_imports,
