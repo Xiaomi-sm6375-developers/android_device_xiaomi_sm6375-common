@@ -40,10 +40,6 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .remove_needed('android.hidl.base@1.0.so'),
     
-    'vendor/etc/camera/camxoverridesettings.txt': blob_fixup()
-        .regex_replace(r'0x10080', r'0')
-        .regex_replace(r'0x1F', r'0x0'),
-    
     'vendor/etc/init/init.batterysecret.rc': blob_fixup()
         .regex_replace(r'on charger', r'on property:init.svc.vendor.charger=running'),
     
@@ -54,10 +50,7 @@ blob_fixups: blob_fixups_user_type = {
     
     'vendor/lib64/android.hardware.secure_element@1.0-impl.so': blob_fixup()
         .remove_needed('android.hidl.base@1.0.so'),
-    
-    'vendor/lib64/camera/components/com.qti.node.mialgocontrol.so': blob_fixup()
-        .add_needed('libpiex_shim.so'),
-    
+        
     ('vendor/lib64/libwvhidl.so', 'vendor/lib64/mediadrm/libwvdrmengine.so'): blob_fixup()
         .add_needed('libcrypto_shim.so'),
 
